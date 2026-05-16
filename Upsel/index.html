@@ -164,6 +164,35 @@
       margin: 28px auto 44px;
     }
 
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: min(100%, 520px);
+      min-height: 64px;
+      padding: 18px 28px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #f1d77b, #c9a84c 50%, #96752a);
+      color: #0a0a0a;
+      text-decoration: none;
+      font-size: clamp(17px, 2.4vw, 22px);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      box-shadow:
+        0 0 36px rgba(201, 168, 76, 0.38),
+        0 16px 35px rgba(0,0,0,0.55);
+      transition: 0.2s ease;
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow:
+        0 0 52px rgba(201, 168, 76, 0.48),
+        0 20px 45px rgba(0,0,0,0.65);
+    }
+
     .microcopy {
       margin-top: 13px;
       color: var(--muted);
@@ -337,6 +366,9 @@
     <div id="offer-content" class="offer-hidden">
 
       <section class="cta-area">
+        <a href="https://go.centerpag.com/PPU38CQC2H0?upsell=true" class="cta-button" target="_blank">
+          Oui, je veux protéger mes résultats
+        </a>
         <p class="microcopy">
           Accès immédiat à l'application après confirmation.
         </p>
@@ -383,6 +415,10 @@
           <div class="price-line">
             Offre spéciale aujourd'hui : <strong>59 €</strong>
           </div>
+
+          <a href="https://go.centerpag.com/PPU38CQC2H0?upsell=true" class="cta-button" target="_blank">
+            Oui, je veux protéger mes résultats
+          </a>
 
           <p class="microcopy">
             Paiement sécurisé • Accès immédiat • Offre disponible uniquement sur cette page
