@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Votre érection n'est que le début</title>
+  
+  <!-- Script Upsell Mundpay -->
+  <script src="https://upsell.mundpay.com/script-v2.js" defer async></script>
+
+  <style>
+    :root {
+      --bg: #080808;
+      --gold: #c9a84c;
+      --gold-soft: rgba(201, 168, 76, 0.18);
+      --text: #f5f1e8;
+      --muted: #b8ad96;
+      --border: rgba(201, 168, 76, 0.28);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(201, 168, 76, 0.16), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(201, 168, 76, 0.09), transparent 30%),
+        #080808;
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.035) 1px, transparent 1px);
+      background-size: 54px 54px;
+      opacity: 0.18;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 32px 18px 70px;
+    }
+
+    .top-badge {
+      width: fit-content;
+      margin: 0 auto 22px;
+      padding: 9px 16px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--gold);
+      background: rgba(201, 168, 76, 0.06);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      box-shadow: 0 0 30px rgba(201, 168, 76, 0.08);
+      text-align: center;
+    }
+
+    .hero {
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: clamp(34px, 6vw, 68px);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+      margin-bottom: 20px;
+      background: linear-gradient(180deg, #fff8df, #c9a84c 70%, #735d20);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 60px rgba(201, 168, 76, 0.16);
+    }
+
+    .subheadline {
+      max-width: 760px;
+      margin: 0 auto 30px;
+      color: var(--muted);
+      font-size: clamp(17px, 2.4vw, 23px);
+      line-height: 1.45;
+    }
+
+    .warning-line {
+      color: #f2ddb0;
+      font-size: 15px;
+      margin-bottom: 26px;
+      opacity: 0.95;
+    }
+
+    .vsl-wrap {
+      max-width: 460px;
+      margin: 0 auto 28px;
+      padding: 10px;
+      border-radius: 28px;
+      background:
+        linear-gradient(135deg, rgba(201,168,76,0.55), rgba(201,168,76,0.04), rgba(201,168,76,0.28));
+      box-shadow:
+        0 0 70px rgba(201, 168, 76, 0.16),
+        0 22px 80px rgba(0,0,0,0.75);
+    }
+
+    .vsl-box {
+      position: relative;
+      width: 100%;
+      min-height: 710px;
+      overflow: hidden;
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at center, rgba(201, 168, 76, 0.16), transparent 44%),
+        linear-gradient(145deg, #111, #050505);
+      border: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+    }
+
+    .vsl-box vturb-smartplayer {
+      width: 100% !important;
+      max-width: 400px !important;
+      display: block !important;
+      margin: 0 auto !important;
+    }
+
+    .offer-hidden {
+      display: none;
+    }
+
+    .offer-visible {
+      display: block;
+      animation: fadeUp 0.9s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .cta-area {
+      text-align: center;
+      margin: 28px auto 44px;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: min(100%, 520px);
+      min-height: 64px;
+      padding: 18px 28px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #f1d77b, #c9a84c 50%, #96752a);
+      color: #0a0a0a;
+      text-decoration: none;
+      font-size: clamp(17px, 2.4vw, 22px);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      box-shadow:
+        0 0 36px rgba(201, 168, 76, 0.38),
+        0 16px 35px rgba(0,0,0,0.55);
+      transition: 0.2s ease;
+      text-align: center;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow:
+        0 0 52px rgba(201, 168, 76, 0.48),
+        0 20px 45px rgba(0,0,0,0.65);
+    }
+
+    .microcopy {
+      margin-top: 13px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .section {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .card {
+      padding: 24px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.025));
+      border: 1px solid var(--border);
+      box-shadow: 0 18px 45px rgba(0,0,0,0.32);
+    }
+
+    .icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      background: rgba(201,168,76,0.11);
+      border: 1px solid rgba(201,168,76,0.32);
+      color: var(--gold);
+      font-size: 20px;
+      box-shadow: 0 0 26px rgba(201,168,76,0.12);
+    }
+
+    .card h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #fff7df;
+      letter-spacing: -0.02em;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .offer-box {
+      margin: 34px auto 0;
+      padding: 28px;
+      border-radius: 26px;
+      background:
+        radial-gradient(circle at top right, rgba(201,168,76,0.15), transparent 34%),
+        rgba(255,255,255,0.04);
+      border: 1px solid rgba(201,168,76,0.32);
+      text-align: center;
+    }
+
+    .offer-box h2 {
+      color: #fff3cc;
+      font-size: clamp(24px, 4vw, 38px);
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      margin-bottom: 14px;
+    }
+
+    .offer-box p {
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.55;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .price-line {
+      margin: 24px 0 18px;
+      font-size: 18px;
+      color: #f6e5b1;
+    }
+
+    .price-line strong {
+      font-size: 34px;
+      color: var(--gold);
+    }
+
+    .footer-note {
+      max-width: 760px;
+      margin: 28px auto 0;
+      color: rgba(184,173,150,0.78);
+      font-size: 12px;
+      line-height: 1.55;
+      text-align: center;
+    }
+
+    @media (max-width: 780px) {
+      .page {
+        padding-top: 24px;
+      }
+
+      .top-badge {
+        font-size: 10px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      .vsl-wrap {
+        max-width: 100%;
+        border-radius: 22px;
+        padding: 7px;
+      }
+
+      .vsl-box {
+        border-radius: 17px;
+        min-height: 650px;
+      }
+
+      .cta-button {
+        min-height: 58px;
+        padding: 16px 22px;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .vsl-box {
+        min-height: 610px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <div class="top-badge">
+      Message important après votre achat
+    </div>
+
+    <section class="hero">
+      <h1>Votre érection n'est que le début.</h1>
+
+      <p class="subheadline">
+        Cette courte vidéo vous montre comment éviter que votre corps sabote vos résultats —
+        en soutenant votre glycémie, votre énergie et votre vitalité masculine au quotidien.
+      </p>
+
+      <p class="warning-line">
+        Regardez cette vidéo maintenant avant d'accéder à votre protocole.
+      </p>
+    </section>
+
+    <section class="vsl-wrap">
+      <div class="vsl-box">
+
+        <vturb-smartplayer 
+          id="vid-69f7a09efe543f7790587b61" 
+          style="display: block; margin: 0 auto; width: 100%; max-width: 400px;">
+        </vturb-smartplayer>
+
+      </div>
+    </section>
+
+    <div id="offer-content" class="offer-hidden">
+
+      <section class="cta-area">
+        <!-- Widget Upsell Mundpay -->
+        <div data-mndpay-render="019d98cb-48fa-71e9-ab4b-b7604bd0d707"></div>
+
+        <p class="microcopy">
+          Accès immédiat à l'application après confirmation.
+        </p>
+      </section>
+
+      <section class="section">
+        <div class="cards">
+
+          <div class="card">
+            <div class="icon">◆</div>
+            <h3>Routine quotidienne simple</h3>
+            <p>
+              Des actions rapides pour soutenir votre équilibre glycémique sans compliquer votre journée.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="icon">◉</div>
+            <h3>Recettes intelligentes</h3>
+            <p>
+              Idées de repas et boissons pour aider votre corps à rester plus stable et énergique.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="icon">✦</div>
+            <h3>Vitalité masculine</h3>
+            <p>
+              Un soutien discret pour votre énergie, votre circulation et votre confiance au quotidien.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="offer-box">
+          <h2>Ajoutez maintenant votre application de contrôle glycémique.</h2>
+
+          <p>
+            Vous venez de prendre une décision importante pour votre performance masculine.
+            Mais si votre corps reste déséquilibré, vos résultats peuvent devenir plus difficiles à maintenir.
+            Cette application vous donne une routine simple pour soutenir votre glycémie, votre énergie et votre vitalité.
+          </p>
+
+          <div class="price-line">
+            Offre spéciale aujourd'hui : <strong>59 €</strong>
+          </div>
+
+          <!-- Widget Upsell Mundpay -->
+          <div data-mndpay-render="019d98cb-48fa-71e9-ab4b-b7604bd0d707"></div>
+
+          <p class="microcopy">
+            Paiement sécurisé • Accès immédiat • Offre disponible uniquement sur cette page
+          </p>
+        </div>
+
+        <p class="footer-note">
+          Avis : cette application fournit des contenus éducatifs, routines et recettes de soutien au bien-être.
+          Elle ne remplace pas un avis médical, un diagnostic ou un traitement professionnel.
+        </p>
+      </section>
+
+    </div>
+
+  </main>
+
+  <script type="text/javascript">
+    var s = document.createElement("script");
+    s.src = "https://scripts.converteai.net/20a070d6-dd0d-4397-aab3-ecc0fb3a86c2/players/69f7a09efe543f7790587b61/v4/player.js";
+    s.async = true;
+    document.head.appendChild(s);
+  </script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const offerContent = document.getElementById("offer-content");
+      const delayInSeconds = 226;
+
+      const videoInterval = setInterval(function () {
+        let currentTime = 0;
+        let isReady = false;
+
+        if (typeof smartplayer !== 'undefined' && smartplayer.instances && smartplayer.instances.length > 0) {
+          if (smartplayer.instances[0].video) {
+            currentTime = smartplayer.instances[0].video.currentTime;
+            isReady = true;
+          }
+        }
+
+        if (!isReady) {
+          const vturbElement = document.getElementById("vid-69f7a09efe543f7790587b61");
+          if (vturbElement && vturbElement.smartplayer && vturbElement.smartplayer.video) {
+            currentTime = vturbElement.smartplayer.video.currentTime;
+            isReady = true;
+          }
+        }
+
+        if (!isReady) {
+          const genericVideo = document.querySelector('video');
+          if (genericVideo) {
+            currentTime = genericVideo.currentTime;
+            isReady = true;
+          }
+        }
+
+        if (isReady && currentTime >= delayInSeconds) {
+          offerContent.classList.remove("offer-hidden");
+          offerContent.classList.add("offer-visible");
+          clearInterval(videoInterval);
+        }
+      }, 500);
+    });
+  </script>
+
+</body>
+</html>
